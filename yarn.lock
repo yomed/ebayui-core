@@ -1905,15 +1905,6 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codecov@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.npmjs.org/codecov/-/codecov-3.0.4.tgz#37f2bf9ed71086923aac7496d982e32e5899dfd8"
-  dependencies:
-    argv "^0.0.2"
-    ignore-walk "^3.0.1"
-    request "^2.87.0"
-    urlgrey "^0.4.4"
-
 coffee-script@1.9.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/coffee-script/-/coffee-script-1.9.0.tgz#7492cbbc3f0361cc5d8865aff7237552ff33e1f7"
