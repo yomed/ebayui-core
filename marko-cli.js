@@ -18,11 +18,11 @@ module.exports = ({ config }) => {
         idleTimeout: 1200000, // 20 mins
         browserStackOptions: {
             onlyAutomate: isTravis
-        }
-        // capabilities: [{
-        //     browser: 'Chrome',
-        //     os: 'Windows',
-        //     os_version: '10'
+        },
+        capabilities: [{
+            browser: 'Chrome',
+            os: 'Windows',
+            os_version: '10'
         // }, {
         //     // Browser tries to navigate from `<ebay-breadcrumb>` tests.
         //     browser: 'Chrome',
@@ -73,10 +73,10 @@ module.exports = ({ config }) => {
         //     browser_version: '12.16',
         //     os: 'Windows',
         //     os_version: '7'
-        // }].map(capability => {
-        //     capability.project = 'ebayui-core';
-        //     capability['browserstack.local'] = true;
-        //     return capability;
-        // })
+        }].map(capability => {
+            capability.project = 'ebayui-core';
+            capability['browserstack.local'] = true;
+            return capability;
+        })
     };
 };

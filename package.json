@@ -8,7 +8,7 @@
     "postpublish": "node scripts/postpublish",
     "start": "yarn clean; browser-refresh demo/",
     "start:prod": "NODE_ENV=production yarn start",
-    "coverage": "nyc marko test && node scripts/coverage",
+    "coverage": "nyc marko test --server && node scripts/coverage",
     "report": "nyc report --reporter=html",
     "test": "yarn coverage && yarn report",
     "test:server": "marko test --server",
