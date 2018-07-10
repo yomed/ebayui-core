@@ -4,5 +4,4 @@ node_js:
 script: "yarn build:ci"
 cache: false
 
-# Send coverage data to Coveralls
-after_success: "cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && npm rum codecov"
+after_success: "npm run codecov"
