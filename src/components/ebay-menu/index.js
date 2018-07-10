@@ -8,8 +8,8 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const buttonClass = 'expand-btn';
-const buttonSelector = `.${buttonClass}`;
+const mainButtonClass = 'expand-btn';
+const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
 
@@ -31,10 +31,10 @@ function getInitialState(input) {
 
         if (isFake) {
             classes.push('fake-menu__item');
-            if (href) {
-                tag = 'a';
-            } else if (itemType === 'button') {
+            if (itemType === 'button') {
                 tag = 'button';
+            } else {
+                tag = 'a';
             }
         } else {
             tag = 'div';
@@ -75,7 +75,10 @@ function getInitialState(input) {
         isFake,
         label: input.label,
         class: input.class,
-        grow: Boolean(input.grow),
+        reverse: Boolean(input.reverse),
+        fixWidth: Boolean(input.fixWidth),
+        borderless: Boolean(input.borderless),
+        size: input.size,
         expanded: false,
         htmlAttributes: processHtmlAttributes(input),
         items,
@@ -86,19 +89,30 @@ function getInitialState(input) {
 function getTemplateData(state) {
     const menuClass = [state.class, 'expander'];
     const itemsClass = [contentClass];
+    const buttonClass = [mainButtonClass];
 
     if (state.isFake) {
         menuClass.push('fake-menu');
         itemsClass.push('fake-menu__items');
-        if (state.grow) {
-            itemsClass.push('fake-menu__items--grow');
+        if (state.reverse) {
+            itemsClass.push('fake-menu__items--reverse');
+        }
+        if (state.fixWidth) {
+            itemsClass.push('fake-menu__items--fix-width');
         }
     } else {
         menuClass.push('menu');
         itemsClass.push('menu__items');
-        if (state.grow) {
-            itemsClass.push('menu__items--grow');
+        if (state.reverse) {
+            itemsClass.push('menu__items--reverse');
         }
+        if (state.fixWidth) {
+            itemsClass.push('menu__items--fix-width');
+        }
+    }
+
+    if (state.borderless) {
+        buttonClass.push('expand-btn--borderless');
     }
 
     return {
@@ -108,9 +122,10 @@ function getTemplateData(state) {
         isNotCheckable: !state.isRadio && !state.isCheckbox,
         label: state.label,
         expanded: state.expanded,
-        menuClass: menuClass,
-        buttonClass: buttonClass,
-        itemsClass: itemsClass,
+        size: state.size,
+        menuClass,
+        buttonClass,
+        itemsClass,
         role: !state.isFake ? 'menu' : null,
         items: state.items,
         htmlAttributes: state.htmlAttributes
@@ -149,7 +164,7 @@ function init() {
     const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
         hostSelector: buttonSelector,
         focusManagement: 'focusable',
-        click: true,
+        expandOnClick: true,
         autoCollapse: true
     });
 }
@@ -250,7 +265,8 @@ function handleItemKeydown(e) {
     });
 
     eventUtils.handleEscapeKeydown(e, () => {
-        this.buttonEl.focus(); // triggers collapse through makeup
+        this.buttonEl.focus();
+        this.setState('expanded', false);
     });
 }
 

@@ -1,3 +1,11 @@
+<p>
+    <a href="https://travis-ci.org/eBay/ebayui-core"><img src="https://api.travis-ci.org/eBay/ebayui-core.svg?branch=master" alt="Build Status" /></a>
+    <a href='https://coveralls.io/github/eBay/ebayui-core?branch=master'><img src='https://coveralls.io/repos/eBay/ebayui-core/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+    <a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0'/></a>
+    <a href="https://david-dm.org/eBay/ebayui-core"><img src="https://david-dm.org/eBay/ebayui-core.svg" alt="Dependency status" /></a>
+    <a href="https://david-dm.org/eBay/ebayui-core#info=devDependencies"><img src="https://david-dm.org/eBay/ebayui-core/dev-status.svg" alt="devDependency status" /></a>
+</p>
+
 # eBayUI Core
 
 > Collection of core eBay components; considered to be the building blocks for all composite structures, pages &amp; apps.
@@ -14,16 +22,24 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v3+)
+* [eBay Skin](https://ebay.github.io/skin/) (v5+)
 
-*NOTE: Marko v3 also requires [Marko Widgets](https://github.com/marko-js/marko-widgets).*
+*Note:\
+Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
+Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
 ### Components
-
+* [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
+* [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
+* [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
+* [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
+* [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
+* [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
-* [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
+* [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
+* [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 
 ## Getting Started
 
@@ -80,7 +96,26 @@ var menu = document.querySelector('.menu');
 menu.label = 'Sortieren';
 ```
 
-*NOTE: Undocumented attributes are assumed to be HTML and will be applied to the root element of the custom tag.*
+#### Pass-Through Attributes
+
+HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root, but individual components will note if it varies for specific cases.
+
+Example of static usage:
+```marko
+<ebay-button id="my-button"/>
+```
+
+For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
+```marko
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes/>
+```
+
+Static and dynamic pass-through attributes can be used simulatenously (html-attributes takes precedence in conflicts):
+```marko
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes type="submit"/>
+```
 
 ### Events
 
@@ -103,6 +138,12 @@ _template.marko_
 ```
 
 *Note:  when using DOM events, you should also handle event destruction and delegation as needed.*
+
+## Browser Policy
+
+All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
+
+<a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0'/></a>
 
 ## Releases &amp; Milestones
 

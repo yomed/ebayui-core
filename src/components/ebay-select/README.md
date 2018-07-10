@@ -1,6 +1,6 @@
 # ebay-select
 
-The `<ebay-select>` is a tag used to create a custom-designed form element which matches much of the functionality of a native `<select>` menu. It uses a markup similar to a `<select>` but hides the native select in favor for better design and UX for the end user.
+The `<ebay-select>` is a tag used to create a native `<select>` form element with the default button styling in DS6. It's intended use is as a select for mobile-sized screens, but it is up to the developer and designer to choose which situations require its use.
 
 ## ebay-select Tag
 
@@ -31,16 +31,19 @@ When a selected option is specified:
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
 `class` | No | String | No | custom class
-`name` | Yes | String | No | used for the `name` attribute of the native `<select>`
 `selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
+`borderless` | No | Boolean | No | whether button has borders
+
+Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `select` tag.
+Be sure to include typical HTML attributes for the `select` tag, like `name`.
 
 ### ebay-select Events
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-collapse` | | collapse content
-`listbox-expand` | | expand content
-`listbox-change` | `{ el, index, selected }` | option selected
+`select-collapse` | | collapse content
+`select-expand` | | expand content
+`select-change` | `{ el, index, selected }` | option selected
 
 ---
 
@@ -57,7 +60,7 @@ Event | Data |  Description
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
 `class` | No | String | No | custom class
-`label` | No | String | No | string label for use in the listbox dropdown button
+`label` | No | String | No | string label for use in the button
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
 
@@ -65,4 +68,4 @@ Name | Required | Type | Stateful | Description
 
 Event | Description
 --- | ---
-`listbox-select` | select one of the options
+`select-option-select` | select one of the options

@@ -20,8 +20,10 @@ Name | Type | Stateful | Description
 `label` | String | Yes | button label
 `expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
 `type` | String | No | Can be "fake" / "radio" / "checkbox"
-`grow` | Boolean | No | grow items container beyond menu size
-`auto-collapse` | Boolean | No | collapse automatically when focus lost
+`reverse` | Boolean | No | expand menu flyout to the left
+`fix-width` | Boolean | No | constrain items container width to button width
+`borderless` | Boolean | No | whether button has borders
+`size` | String | No | button size, "small" or "large" (default: medium)
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 
 ### ebay-menu Events

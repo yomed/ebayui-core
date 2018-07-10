@@ -53,7 +53,7 @@ describe('given the menu is in the default state', () => {
 
         test('then it rerenders with the new label', (context, done) => {
             setTimeout(() => {
-                expect(buttonLabel.innerText).to.equal(`${newLabel}\n`);
+                expect(buttonLabel.innerText.trim()).to.equal(newLabel);
                 done();
             }, 10);
         });
@@ -168,10 +168,11 @@ describe('given the menu is in the expanded state', () => {
 
     describe('when the escape key is pressed', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('menu-collapse', spy);
             testUtils.triggerEvent(firstItem, 'keydown', 27);
+            setTimeout(done);
         });
 
         test('then it collapses', () => {

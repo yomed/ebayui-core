@@ -1,6 +1,12 @@
 {
     "dependencies": [
-        "@ebay/skin/listbox",
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "dependencies": [
+                "@ebay/skin/select",
+                "@ebay/skin/icon"
+            ]
+        },
         "../../../src/components/ebay-button",
         "require: marko-widgets",
         "require: ./index.js"
